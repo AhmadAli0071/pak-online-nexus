@@ -2,39 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Pakistan Online Design System - White & Blue Theme
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 219 84% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 219 84% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 219 84% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary Blue: #1E40AF */
+    --primary: 219 84% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 219 84% 35%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 219 84% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 14% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 220 60% 95%;
+    --accent-foreground: 219 84% 15%;
+
+    /* Blue-gray text colors */
+    --text-blue-dark: 219 84% 15%;
+    --text-blue-gray: 220 14% 50%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 219 84% 40%;
+
+    /* Custom design tokens */
+    --shadow-card: 0 4px 16px hsla(219, 84%, 40%, 0.08);
+    --shadow-button: 0 2px 8px hsla(219, 84%, 40%, 0.16);
+    --gradient-subtle: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 60% 98%) 100%);
 
     --radius: 0.5rem;
 
