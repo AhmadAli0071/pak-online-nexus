@@ -51,7 +51,7 @@ export default function Navbar() {
           {/* Center - City Selector */}
           <div className="flex-1 flex justify-center px-8">
             <div className="w-full max-w-xs">
-              <Combobox value={selectedCity} onChange={setSelectedCity}>
+              <Combobox value={selectedCity} onChange={setSelectedCity} as="div">
                 <div className="relative">
                   <Combobox.Input
                     className="w-full rounded-lg border border-border bg-background py-2 pl-3 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
