@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import mobileImage from "@/assets/mockup-mobile.jpg";
 import laptopImage from "@/assets/mockup-laptop.jpg";
 
@@ -29,20 +30,30 @@ export function MockupCarousel() {
   return (
     <section className="py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-8">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-semibold text-text-blue-dark mb-4">
             Experience Pakistan Online
           </h2>
           <p className="text-xl text-text-blue-gray max-w-2xl mx-auto">
             Available on all your devices with a seamless experience
           </p>
-        </div>
+        </motion.div>
         
         <div className="relative max-w-6xl mx-auto">
           <div className="flex items-center justify-center space-x-8">
             {mockups.map((mockup, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
                 className={`transition-all duration-700 ${
                   index === currentIndex 
                     ? 'opacity-100 scale-100 z-20' 
@@ -51,8 +62,16 @@ export function MockupCarousel() {
               >
                 <div className="relative">
                   {/* Blue-tinted frame effect */}
-                  <div className="absolute inset-0 bg-primary/10 rounded-3xl transform rotate-1"></div>
-                  <div className="relative bg-background rounded-3xl shadow-card overflow-hidden">
+                  <motion.div 
+                    className="absolute inset-0 bg-primary/10 rounded-3xl transform rotate-1"
+                    animate={{ rotate: index === currentIndex ? 1 : 0 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <motion.div 
+                    className="relative bg-background rounded-3xl shadow-card overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <img
                       src={mockup.image}
                       alt={mockup.alt}
@@ -60,18 +79,20 @@ export function MockupCarousel() {
                         mockup.type === 'mobile' ? 'max-w-xs' : 'max-w-2xl'
                       }`}
                     />
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
           
           {/* Carousel Indicators */}
           <div className="flex justify-center mt-8 space-x-2">
             {mockups.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.8 }}
                 className={`w-3 h-3 rounded-full transition-colors ${
                   index === currentIndex ? 'bg-primary' : 'bg-muted'
                 }`}

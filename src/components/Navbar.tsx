@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Combobox } from '@headlessui/react'
 import { Search, ChevronDown, User } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const cities = [
   "Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad",
@@ -38,7 +39,12 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-background border-b border-primary">
+    <motion.nav 
+      initial={{ y: -80 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-background border-b border-primary fixed top-0 left-0 right-0 z-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -107,29 +113,36 @@ export default function Navbar() {
             {/* Navigation Links */}
             <div className="hidden md:flex items-center space-x-6">
               {navigationLinks.map((link) => (
-                <Link
+                <motion.div
                   key={link.name}
-                  to={link.href}
-                  className="text-text-blue-dark hover:text-primary transition-colors duration-200 relative group"
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <span className="relative">
-                    {link.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                  </span>
-                </Link>
+                  <Link
+                    to={link.href}
+                    className="text-text-blue-dark hover:text-primary transition-colors duration-200 relative group"
+                  >
+                    <span className="relative">
+                      {link.name}
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                  </Link>
+                </motion.div>
               ))}
             </div>
 
             {/* Profile Icon */}
-            <button
+            <motion.button
               onClick={handleProfileClick}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
               className="p-2 rounded-full hover:bg-accent transition-colors duration-200"
             >
               <User className="h-5 w-5 text-text-blue-dark hover:text-primary" />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }

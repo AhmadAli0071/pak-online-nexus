@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 
@@ -20,38 +21,61 @@ export function TestimonialsSection() {
   return (
     <section className="py-20 bg-accent/30">
       <div className="container mx-auto px-8">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-semibold text-text-blue-dark mb-4">
             What Our Community Says
           </h2>
           <p className="text-xl text-text-blue-gray max-w-2xl mx-auto">
             Real stories from real people in our growing community
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <div 
+            <motion.div 
               key={testimonial.name}
-              className="relative animate-slide-up"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+              className="relative"
             >
               {/* Speech Bubble Card */}
-              <div className="bg-background rounded-2xl p-8 shadow-card relative">
+              <motion.div 
+                className="bg-background rounded-2xl p-8 shadow-card relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
                 {/* Quote */}
-                <p className="text-text-blue-gray text-lg leading-relaxed mb-6">
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: index * 0.3 }}
+                  viewport={{ once: true }}
+                  className="text-text-blue-gray text-lg leading-relaxed mb-6"
+                >
                   "{testimonial.quote}"
-                </p>
+                </motion.p>
                 
                 {/* User Info */}
                 <div className="flex items-center">
-                  <div className="w-12 h-12 rounded-full overflow-hidden mr-4 ring-2 ring-primary/20">
+                  <motion.div 
+                    className="w-12 h-12 rounded-full overflow-hidden mr-4 ring-2 ring-primary/20"
+                    whileHover={{ scale: 1.1 }}
+                  >
                     <img 
                       src={testimonial.avatar} 
                       alt={testimonial.name}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </motion.div>
                   <div>
                     <h4 className="font-semibold text-text-blue-dark">
                       {testimonial.name}
@@ -64,17 +88,21 @@ export function TestimonialsSection() {
                 
                 {/* Speech Bubble Tail */}
                 <div className="absolute -bottom-2 left-8 w-4 h-4 bg-background transform rotate-45 border-r border-b border-border"></div>
-              </div>
+              </motion.div>
               
               {/* Avatar Overlap Effect */}
-              <div className="absolute -top-6 right-8 w-16 h-16 rounded-full overflow-hidden ring-4 ring-primary/20 bg-background">
+              <motion.div 
+                className="absolute -top-6 right-8 w-16 h-16 rounded-full overflow-hidden ring-4 ring-primary/20 bg-background"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
                 <img 
                   src={testimonial.avatar} 
                   alt={testimonial.name}
                   className="w-full h-full object-cover"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>

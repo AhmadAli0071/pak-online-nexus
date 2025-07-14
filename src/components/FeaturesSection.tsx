@@ -2,6 +2,7 @@ import storeIcon from "@/assets/icon-store.jpg";
 import educationIcon from "@/assets/icon-education.jpg";
 import socialIcon from "@/assets/icon-social.jpg";
 import marketplaceIcon from "@/assets/icon-marketplace.jpg";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -32,30 +33,41 @@ export function FeaturesSection() {
       <div className="container mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div 
+            <motion.div 
               key={feature.title}
-              className="text-center animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="text-center"
             >
               {/* Icon Container */}
-              <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-card">
+              <motion.div 
+                className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-card"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
                 <img 
                   src={feature.icon} 
                   alt={feature.title}
                   className="w-full h-full object-cover"
                 />
-              </div>
+              </motion.div>
               
               {/* Feature Card */}
-              <div className="bg-background rounded-2xl p-6 shadow-card hover:shadow-lg transition-shadow">
+              <motion.div 
+                className="bg-background rounded-2xl p-6 shadow-card hover:shadow-lg transition-shadow"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.2 }}
+              >
                 <h3 className="text-xl font-semibold text-text-blue-dark mb-3">
                   {feature.title}
                 </h3>
                 <p className="text-text-blue-gray">
                   {feature.description}
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>
