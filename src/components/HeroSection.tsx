@@ -42,7 +42,7 @@ export function HeroSection() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-6xl font-medium text-text-blue-dark mb-6"
+            className="text-5xl md:text-6xl font-medium text-foreground mb-6"
           >
             Welcome to Pakistan Online
           </motion.h1>
@@ -50,7 +50,7 @@ export function HeroSection() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-text-blue-gray mb-12 max-w-2xl mx-auto"
+            className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto"
           >
             Your city's all‑in‑one hub for shopping, learning & community.
           </motion.p>
