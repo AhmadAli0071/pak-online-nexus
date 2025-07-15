@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Icosahedron } from "@react-three/drei";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
 
 function FloatingIcosahedron() {
   return (
@@ -27,11 +27,25 @@ export function HeroSection() {
     <section ref={ref} className="relative overflow-hidden bg-background h-screen">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <FloatingIcosahedron />
-          <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+        <Canvas 
+          camera={{ position: [0, 0, 8], fov: 50 }}
+          onCreated={({ gl }) => {
+            gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+          }}
+          dpr={[1, 2]}
+        >
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[10, 10, 5]} intensity={1} />
+            <FloatingIcosahedron />
+            <OrbitControls 
+              enableZoom={false} 
+              enablePan={false} 
+              autoRotate 
+              autoRotateSpeed={0.5}
+              makeDefault
+            />
+          </Suspense>
         </Canvas>
       </div>
       
