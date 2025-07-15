@@ -16,6 +16,7 @@ const cities = [
 
 const navigationLinks = [
   { name: 'Store', href: '/store' },
+  { name: 'Create Shop', href: '/create-shop' },
   { name: 'Education', href: '/education' },
   { name: 'Feed', href: '/feed' },
   { name: 'Marketplace', href: '/marketplace' },
@@ -91,7 +92,7 @@ export default function Navbar() {
                         value={city}
                         className={({ active }) =>
                           `cursor-pointer select-none px-4 py-2 text-sm ${
-                            active ? 'bg-accent text-primary' : 'text-text-blue-dark'
+                            active ? 'bg-accent text-primary' : 'text-foreground'
                           }`
                         }
                       >
@@ -120,7 +121,7 @@ export default function Navbar() {
                 >
                   <Link
                     to={link.href}
-                    className="text-text-blue-dark hover:text-primary transition-colors duration-200 relative group"
+                    className="text-foreground hover:text-primary transition-colors duration-200 relative group"
                   >
                     <span className="relative">
                       {link.name}
@@ -138,7 +139,7 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               className="p-2 rounded-full hover:bg-accent transition-colors duration-200"
             >
-              <User className="h-5 w-5 text-text-blue-dark hover:text-primary" />
+              <User className="h-5 w-5 text-foreground hover:text-primary" />
             </motion.button>
           </div>
         </div>
