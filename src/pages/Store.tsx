@@ -6,6 +6,7 @@ import ShopGrid from '@/components/store/ShopGrid'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { Plus } from 'lucide-react'
+import heroStoreImage from '@/assets/hero-store.jpg'
 
 // Mock shop data
 const mockShops: Shop[] = [
@@ -148,37 +149,69 @@ export default function Store() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="pt-24 pb-12 bg-gradient-to-br from-primary/5 to-blue-500/5"
+        className="relative pt-24 pb-16 overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <motion.div
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5 }}
+            className="w-full h-full"
+          >
+            <img 
+              src={heroStoreImage} 
+              alt="Pakistan Store Marketplace" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/95" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/60" />
+          </motion.div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.h1
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl font-bold text-foreground mb-4"
+              transition={{ duration: 1, delay: 0.2 }}
+              className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-6 leading-tight"
             >
               Discover Local Shops & Services
             </motion.h1>
             <motion.p
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed"
             >
-              Connect with local businesses across Pakistan. Shop products or find services near you.
+              Connect with local businesses across Pakistan. Shop products or find services from trusted vendors in your city.
             </motion.p>
             <motion.div
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
-              <Button asChild size="lg" className="rounded-full">
-                <Link to="/create-shop">
-                  <Plus className="h-5 w-5 mr-2" />
-                  Create Your Shop
-                </Link>
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-lg shadow-primary/25 text-lg font-semibold px-8 py-4 h-14">
+                  <Link to="/create-shop">
+                    <Plus className="h-5 w-5 mr-2" />
+                    Create Your Shop
+                  </Link>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button variant="outline" size="lg" className="rounded-full border-2 border-primary/20 hover:border-primary/40 backdrop-blur-sm text-lg font-semibold px-8 py-4 h-14">
+                  Browse Shops
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
         </div>
