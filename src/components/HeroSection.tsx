@@ -1,18 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Icosahedron } from "@react-three/drei";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, Suspense } from "react";
-
-function FloatingIcosahedron() {
-  return (
-    <mesh rotation={[0, 0, 0]}>
-      <Icosahedron args={[2, 0]}>
-        <meshStandardMaterial color="#1E40AF" wireframe opacity={0.1} transparent />
-      </Icosahedron>
-    </mesh>
-  );
-}
+import { useRef } from "react";
 
 export function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,28 +13,23 @@ export function HeroSection() {
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-background h-screen">
-      {/* 3D Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas 
-          camera={{ position: [0, 0, 8], fov: 50 }}
-          onCreated={({ gl }) => {
-            gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        <motion.div 
+          className="w-full h-full bg-gradient-to-br from-blue-50 to-white"
+          animate={{
+            background: [
+              "linear-gradient(45deg, rgb(239 246 255), rgb(255 255 255))",
+              "linear-gradient(45deg, rgb(219 234 254), rgb(248 250 252))",
+              "linear-gradient(45deg, rgb(239 246 255), rgb(255 255 255))"
+            ]
           }}
-          dpr={[1, 2]}
-        >
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <FloatingIcosahedron />
-            <OrbitControls 
-              enableZoom={false} 
-              enablePan={false} 
-              autoRotate 
-              autoRotateSpeed={0.5}
-              makeDefault
-            />
-          </Suspense>
-        </Canvas>
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </div>
       
       {/* Hero Content */}
