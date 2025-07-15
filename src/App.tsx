@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -11,6 +13,8 @@ import Store from "./pages/Store";
 import CreateShop from "./pages/CreateShop";
 import Shop from "./pages/Shop";
 import NotFound from "./pages/NotFound";
+import AuthSlider from "./pages/AuthSlider"; // ✅ Import sliding component
+import ForgotPassword from './pages/ForgotPassword';
 
 const queryClient = new QueryClient();
 
@@ -24,11 +28,16 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/store" element={<Store />} />
           <Route path="/create-shop" element={<CreateShop />} />
           <Route path="/shop/:shopId" element={<Shop />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+          {/* ✅ New sliding auth route */}
+          <Route path="/auth" element={<AuthSlider />} />
+
+          {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
