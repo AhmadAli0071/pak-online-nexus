@@ -48,10 +48,10 @@ export function Footer() {
               whileHover={{ scale: 1.05 }}
               className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4"
             >
-              Pakistan Online
+              MY Online 
             </motion.h3>
             <p className="text-slate-300 mb-6 text-lg leading-relaxed max-w-md">
-              Connecting communities, empowering businesses, and creating opportunities across Pakistan through innovative digital solutions.
+              Connecting communities, empowering businesses, and creating opportunities across MY Online through innovative digital solutions.
             </p>
             {/* Contact Info */}
             <div className="space-y-3">
@@ -62,7 +62,7 @@ export function Footer() {
                 <div className="p-2 bg-blue-500/20 rounded-lg">
                   <Mail className="h-4 w-4 text-blue-400" />
                 </div>
-                <span>info@pakistanonline.com</span>
+                <span>info@MY Online online.com</span>
               </motion.div>
               <motion.div 
                 whileHover={{ x: 5 }}
@@ -80,7 +80,7 @@ export function Footer() {
                 <div className="p-2 bg-blue-500/20 rounded-lg">
                   <MapPin className="h-4 w-4 text-blue-400" />
                 </div>
-                <span>Karachi, Pakistan</span>
+                <span>Karachi, MY Online </span>
               </motion.div>
             </div>
           </motion.div>
@@ -173,10 +173,10 @@ export function Footer() {
               className="text-slate-400 text-center"
             >
               <p className="font-medium">
-                © 2024 Pakistan Online. All rights reserved.
+                © 2024 MY Online . All rights reserved.
               </p>
               <p className="text-sm mt-1">
-                Built with ❤️ for Pakistan
+                Built with ❤️ for MY Online 
               </p>
             </motion.div>
           </div>

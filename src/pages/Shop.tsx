@@ -22,7 +22,7 @@ const mockShopData = {
     categories: ["Garments", "Fashion"],
     rating: 4.8,
     totalReviews: 124,
-    description: "Premium clothing and fashion accessories for men and women. We offer the latest trends in Pakistani and international fashion.",
+    description: "Premium clothing and fashion accessories for men and women. We offer the latest trends in MY Online i and international fashion.",
     phone: "+92 300 1234567",
     email: "ahmed@zarafashion.pk",
     socialLinks: {

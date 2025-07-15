@@ -34,7 +34,7 @@ export default function Navbar() {
             className="flex-shrink-0"
           >
             <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary via-blue-600 to-primary bg-clip-text text-transparent">
-              Pakistan Online
+              MY Online 
             </Link>
           </motion.div>
 

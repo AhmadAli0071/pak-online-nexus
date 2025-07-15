@@ -149,7 +149,7 @@ export default function CreateShop() {
               Create Your Shop
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Join Pakistan Online marketplace and reach customers across the country.
+              Join MY Online  marketplace and reach customers across the country.
             </p>
           </motion.div>
 
