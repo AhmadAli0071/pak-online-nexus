@@ -16,8 +16,17 @@ import Education from "./pages/Education";
 import Feed from "./pages/Feed";
 import Marketplace from "./pages/Marketplace";
 import NotFound from "./pages/NotFound";
-import AuthSlider from "./pages/AuthSlider"; // ✅ Import sliding component
+import AuthSlider from "./pages/AuthSlider";
 import ForgotPassword from './pages/ForgotPassword';
+
+// Education Module Pages
+import InstituteDetail from "./pages/education/InstituteDetail";
+import CreateInstitute from "./pages/education/CreateInstitute";
+import StudentDashboard from "./pages/education/StudentDashboard";
+
+// Feed Module Pages
+import PostDetail from "./pages/feed/PostDetail";
+import UserProfile from "./pages/feed/UserProfile";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +46,14 @@ const App = () => (
           <Route path="/create-shop" element={<CreateShop />} />
           <Route path="/shop/:shopId" element={<Shop />} />
           <Route path="/education" element={<Education />} />
+          <Route path="/education/institute/:id" element={<InstituteDetail />} />
+          <Route path="/education/create" element={<CreateInstitute />} />
+          <Route path="/education/dashboard" element={<StudentDashboard />} />
+          
           <Route path="/feed" element={<Feed />} />
+          <Route path="/feed/post/:id" element={<PostDetail />} />
+          <Route path="/feed/profile/:username" element={<UserProfile />} />
+          
           <Route path="/marketplace" element={<Marketplace />} />
 
           {/* ✅ New sliding auth route */}

@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
-import { Heart, MessageCircle, Share, Users, TrendingUp, Camera, Video, Newspaper, Search, MoreHorizontal } from 'lucide-react'
+import { Users, TrendingUp, Camera, Video, Newspaper, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import Navbar from '@/components/Navbar'
+import PostCard from '@/components/feed/PostCard'
+import CreatePost from '@/components/feed/CreatePost'
 
 const posts = [
   {
@@ -194,91 +196,12 @@ export default function Feed() {
               </div>
 
               {/* Create Post */}
-              <Card className="mb-6">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" />
-                      <AvatarFallback>You</AvatarFallback>
-                    </Avatar>
-                    <Input
-                      placeholder="What's on your mind?"
-                      className="flex-1"
-                    />
-                    <Button>Post</Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <CreatePost />
 
               {/* Posts */}
               <div className="space-y-6">
                 {posts.map((post, index) => (
-                  <motion.div
-                    key={post.id}
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 * index, duration: 0.6 }}
-                  >
-                    <Card className="hover:shadow-md transition-shadow duration-300">
-                      <CardContent className="p-6">
-                        {/* Post Header */}
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <Avatar>
-                              <AvatarImage src={post.user.avatar} />
-                              <AvatarFallback>{post.user.name[0]}</AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <p className="font-semibold text-foreground">{post.user.name}</p>
-                                {post.user.verified && (
-                                  <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
-                                    <div className="w-2 h-2 bg-white rounded-full" />
-                                  </div>
-                                )}
-                              </div>
-                              <p className="text-sm text-muted-foreground">{post.timestamp}</p>
-                            </div>
-                          </div>
-                          <Button variant="ghost" size="sm">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </div>
-
-                        {/* Post Content */}
-                        <div className="mb-4">
-                          <p className="text-foreground leading-relaxed">{post.content}</p>
-                          {post.image && (
-                            <div className="mt-3 rounded-lg overflow-hidden">
-                              <img
-                                src={post.image}
-                                alt="Post image"
-                                className="w-full max-h-96 object-cover"
-                              />
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Post Actions */}
-                        <div className="flex items-center justify-between pt-3 border-t border-border">
-                          <div className="flex items-center gap-6">
-                            <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-red-500">
-                              <Heart className="h-4 w-4" />
-                              {post.likes}
-                            </Button>
-                            <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary">
-                              <MessageCircle className="h-4 w-4" />
-                              {post.comments}
-                            </Button>
-                            <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary">
-                              <Share className="h-4 w-4" />
-                              {post.shares}
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                  <PostCard key={post.id} post={post} index={index} />
                 ))}
               </div>
             </motion.div>
