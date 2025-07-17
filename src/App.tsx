@@ -12,6 +12,9 @@ import Dashboard from "./pages/Dashboard";
 import Store from "./pages/Store";
 import CreateShop from "./pages/CreateShop";
 import Shop from "./pages/Shop";
+import Education from "./pages/Education";
+import Feed from "./pages/Feed";
+import Marketplace from "./pages/Marketplace";
 import NotFound from "./pages/NotFound";
 import AuthSlider from "./pages/AuthSlider"; // ✅ Import sliding component
 import ForgotPassword from './pages/ForgotPassword';
@@ -33,6 +36,9 @@ const App = () => (
           <Route path="/store" element={<Store />} />
           <Route path="/create-shop" element={<CreateShop />} />
           <Route path="/shop/:shopId" element={<Shop />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/marketplace" element={<Marketplace />} />
 
           {/* ✅ New sliding auth route */}
           <Route path="/auth" element={<AuthSlider />} />
