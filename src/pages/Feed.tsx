@@ -23,7 +23,7 @@ const posts = [
     likes: 23,
     comments: 8,
     shares: 3,
-    type: "post"
+    type: "post" as const
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const posts = [
     likes: 45,
     comments: 12,
     shares: 5,
-    type: "text"
+    type: "text" as const
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const posts = [
     likes: 156,
     comments: 34,
     shares: 28,
-    type: "news"
+    type: "news" as const
   }
 ]
 
