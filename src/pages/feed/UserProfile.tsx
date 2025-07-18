@@ -31,14 +31,17 @@ const userPosts = [
     user: {
       name: "Ahmad Hassan",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
-      verified: true
+      verified: true,
+      city: "Lahore"
     },
     timestamp: "2 hours ago",
+    location: "DHA Phase 5, Lahore",
     content: "Just launched my new online store on Pakistan Online! 🎉 Excited to serve customers across the country.",
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
     likes: 23,
     comments: 8,
     shares: 3,
+    reactions: { heart: 15, laugh: 5, wow: 3 },
     type: "post" as const
   },
   {
@@ -46,14 +49,17 @@ const userPosts = [
     user: {
       name: "Ahmad Hassan",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
-      verified: true
+      verified: true,
+      city: "Lahore"
     },
     timestamp: "1 day ago",
+    location: "DHA Phase 5, Lahore",
     content: "Amazing sunset view from my office today. Pakistan is truly beautiful! 🌅",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
     likes: 45,
     comments: 12,
     shares: 5,
+    reactions: { heart: 30, laugh: 8, wow: 7 },
     type: "post" as const
   }
 ]

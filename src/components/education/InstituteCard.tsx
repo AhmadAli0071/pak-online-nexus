@@ -35,131 +35,89 @@ export default function InstituteCard({ institute, index }: InstituteCardProps) 
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1 * index, duration: 0.6 }}
     >
-      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer"
+      <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1"
             onClick={() => navigate(`/education/institute/${institute.id}`)}>
         {/* Banner with Logo Overlay */}
-        <div className="relative h-48 md:h-64">
+        <div className="relative h-48">
           <img
             src={institute.banner}
             alt={institute.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           
-          {/* Logo Overlay */}
-          <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6">
-            <div className="relative">
-              <img
-                src={institute.logo}
-                alt={`${institute.name} logo`}
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-white shadow-lg"
-              />
-              {institute.verified && (
-                <div className="absolute -top-1 -right-1 bg-primary text-white rounded-full p-1">
-                  <Check className="h-3 w-3" />
-                </div>
-              )}
+          {/* Logo */}
+          <div className="absolute top-4 right-4">
+            <img
+              src={institute.logo}
+              alt={`${institute.name} logo`}
+              className="w-12 h-12 rounded-full border-2 border-white shadow-lg"
+            />
+          </div>
+
+          {/* Institute Type Badge */}
+          <div className="absolute top-4 left-4">
+            <Badge className="bg-primary text-white">
+              {institute.name.includes('University') ? 'University' : 
+               institute.name.includes('College') ? 'College' : 'School'}
+            </Badge>
+          </div>
+
+          {/* Name and Location Overlay */}
+          <div className="absolute bottom-4 left-4 text-white">
+            <h3 className="text-lg font-bold mb-1">{institute.name}</h3>
+            <div className="flex items-center gap-1 text-sm">
+              <MapPin className="h-3 w-3" />
+              <span>{institute.location}</span>
             </div>
           </div>
         </div>
 
-        <CardContent className="p-6">
-          {/* Institute Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-            <div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">
-                {institute.name}
-              </h3>
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <MapPin className="h-4 w-4" />
-                  <span>{institute.location}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span className="font-medium">{institute.rating}</span>
-                </div>
-                {institute.verified && (
-                  <Badge variant="secondary" className="bg-primary/10 text-primary">
-                    Verified
-                  </Badge>
-                )}
-              </div>
+        <CardContent className="p-4">
+          {/* Rating and Verification */}
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-1">
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              <span className="font-medium text-sm">{institute.rating}</span>
+              <span className="text-xs text-muted-foreground">(1.2k reviews)</span>
             </div>
-            
-            <div className="flex gap-2 mt-4 md:mt-0">
-              <Button size="sm" className="bg-primary hover:bg-primary/90"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        navigate(`/education/apply/${institute.id}`)
-                      }}>
-                Apply Now
-              </Button>
-              <Button variant="outline" size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        navigate(`/education/courses/${institute.id}`)
-                      }}>
-                View Courses
-              </Button>
+            {institute.verified && (
+              <Badge variant="secondary" className="bg-green-100 text-green-700">
+                <Check className="h-3 w-3 mr-1" />
+                Verified
+              </Badge>
+            )}
+          </div>
+
+          {/* Courses Offered */}
+          <div className="mb-4">
+            <p className="text-xs text-muted-foreground mb-2">Courses Offered (3 shown):</p>
+            <div className="flex flex-wrap gap-1">
+              {institute.specialization.split(', ').slice(0, 3).map((course, idx) => (
+                <Badge key={idx} variant="outline" className="text-xs">
+                  {course}
+                </Badge>
+              ))}
             </div>
           </div>
 
-          {/* Institute Details Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <Users className="h-8 w-8 text-primary" />
-              <div>
-                <p className="text-sm text-muted-foreground">Total Students</p>
-                <p className="font-semibold text-foreground">{institute.students}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <BookOpen className="h-8 w-8 text-primary" />
-              <div>
-                <p className="text-sm text-muted-foreground">Available Courses</p>
-                <p className="font-semibold text-foreground">{institute.courses}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <GraduationCap className="h-8 w-8 text-primary" />
-              <div>
-                <p className="text-sm text-muted-foreground">Specialization</p>
-                <p className="font-semibold text-foreground text-sm">{institute.specialization}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <div className={`h-3 w-3 rounded-full ${
-                institute.admissionStatus === 'Open' ? 'bg-green-500' : 'bg-red-500'
-              }`} />
-              <div>
-                <p className="text-sm text-muted-foreground">Admission Status</p>
-                <p className={`font-semibold ${
-                  institute.admissionStatus === 'Open' ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  {institute.admissionStatus}
-                </p>
-              </div>
-            </div>
+          {/* Students Count */}
+          <div className="flex items-center gap-2 mb-4">
+            <Users className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium">{institute.students}</span>
+            <span className="text-xs text-muted-foreground">Total Students</span>
           </div>
 
-          {/* Contact Information */}
-          <div className="mt-6 pt-6 border-t border-border">
-            <h4 className="font-semibold text-foreground mb-3">Contact Information</h4>
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="h-4 w-4" />
-                <span>{institute.phone}</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="h-4 w-4" />
-                <span>{institute.email}</span>
-              </div>
-            </div>
-          </div>
+          {/* Apply Button */}
+          <Button 
+            className="w-full bg-primary hover:bg-primary/90"
+            onClick={(e) => {
+              e.stopPropagation()
+              navigate(`/education/institute/${institute.id}`)
+            }}
+          >
+            Apply Now
+          </Button>
         </CardContent>
       </Card>
     </motion.div>
