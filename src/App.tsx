@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Store from "./pages/Store";
-import CreateShop from "./pages/CreateShop";
+import CreateShop from "./pages/ShopWizard";
 import Shop from "./pages/Shop";
 import Education from "./pages/Education";
 import Feed from "./pages/Feed";
