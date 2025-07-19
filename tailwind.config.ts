@@ -55,6 +55,13 @@ export default {
 				},
 				'text-blue-dark': 'hsl(var(--text-blue-dark))',
 				'text-blue-gray': 'hsl(var(--text-blue-gray))',
+				'marketplace-primary': 'hsl(var(--marketplace-primary))',
+				'marketplace-accent': 'hsl(var(--marketplace-accent))',
+				'marketplace-success': 'hsl(var(--marketplace-success))',
+				'marketplace-warning': 'hsl(var(--marketplace-warning))',
+				'step-pending': 'hsl(var(--step-pending))',
+				'step-active': 'hsl(var(--step-active))',
+				'step-completed': 'hsl(var(--step-completed))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

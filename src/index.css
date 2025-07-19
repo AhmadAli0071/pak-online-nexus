@@ -102,6 +102,17 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Marketplace Colors */
+    --marketplace-primary: 25 100% 50%;    /* Orange */
+    --marketplace-accent: 196 100% 47%;    /* Blue */
+    --marketplace-success: 142 76% 36%;    /* Green */
+    --marketplace-warning: 45 100% 51%;    /* Yellow */
+    
+    /* Step indicator colors */
+    --step-pending: 220 14% 70%;
+    --step-active: 219 84% 40%;
+    --step-completed: 142 76% 36%;
   }
 }
 

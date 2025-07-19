@@ -12,6 +12,8 @@ interface ShopCardProps {
 }
 
 export default function ShopCard({ shop, index }: ShopCardProps) {
+  const navigate = useNavigate()
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}

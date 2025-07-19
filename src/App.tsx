@@ -27,6 +27,15 @@ import StudentDashboard from "./pages/education/StudentDashboard";
 // Feed Module Pages
 import PostDetail from "./pages/feed/PostDetail";
 import UserProfile from "./pages/feed/UserProfile";
+import CreatePost from "./pages/feed/CreatePost";
+
+// Marketplace Module Pages
+import ProductDetail from "./pages/marketplace/ProductDetail";
+import CreateProduct from "./pages/marketplace/CreateProduct";
+import UserDashboard from "./pages/marketplace/UserDashboard";
+
+// Store Module Pages
+import ShopDetail from "./pages/store/ShopDetail";
 
 const queryClient = new QueryClient();
 
@@ -53,8 +62,14 @@ const App = () => (
           <Route path="/feed" element={<Feed />} />
           <Route path="/feed/post/:id" element={<PostDetail />} />
           <Route path="/feed/profile/:username" element={<UserProfile />} />
+          <Route path="/feed/create" element={<CreatePost />} />
           
           <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/marketplace/product/:productId" element={<ProductDetail />} />
+          <Route path="/marketplace/create" element={<CreateProduct />} />
+          <Route path="/marketplace/dashboard" element={<UserDashboard />} />
+          
+          <Route path="/store/shop/:shopId" element={<ShopDetail />} />
 
           {/* ✅ New sliding auth route */}
           <Route path="/auth" element={<AuthSlider />} />

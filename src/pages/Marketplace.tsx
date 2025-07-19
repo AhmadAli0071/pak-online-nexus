@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Search, Filter, MapPin, Clock, Heart, Eye, Smartphone, Car, Sofa, Briefcase, Home, ChevronRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Search, Filter, MapPin, Clock, Heart, Eye, Smartphone, Car, Sofa, Briefcase, Home, ChevronRight, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -96,6 +97,8 @@ const cities = [
 ]
 
 export default function Marketplace() {
+  const navigate = useNavigate()
+  
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -162,10 +165,18 @@ export default function Marketplace() {
                       </SelectContent>
                     </Select>
 
-                    <Button className="h-12 px-8 bg-orange-500 hover:bg-orange-600">
-                      <Search className="h-5 w-5 mr-2" />
-                      Search
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button className="h-12 px-8 bg-orange-500 hover:bg-orange-600">
+                        <Search className="h-5 w-5 mr-2" />
+                        Search
+                      </Button>
+                      <Button 
+                        className="h-12 px-4 bg-primary hover:bg-primary-hover"
+                        onClick={() => navigate('/marketplace/create')}
+                      >
+                        <Plus className="h-5 w-5" />
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -331,7 +342,10 @@ export default function Marketplace() {
                           </div>
                         </div>
 
-                        <Button className="w-full mt-4 bg-orange-500 hover:bg-orange-600">
+                        <Button 
+                          className="w-full mt-4 bg-orange-500 hover:bg-orange-600"
+                          onClick={() => navigate(`/marketplace/product/${product.id}`)}
+                        >
                           View Details
                           <ChevronRight className="h-4 w-4 ml-1" />
                         </Button>
