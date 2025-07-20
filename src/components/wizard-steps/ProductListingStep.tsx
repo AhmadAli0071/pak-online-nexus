@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Trash2, Edit3, Package, ImageIcon } from 'lucide-react';
-import { ShopData } from '../ShopWizard';
+import { ShopData } from '@/types/shop';
 
 interface ProductListingStepProps {
   data: ShopData;

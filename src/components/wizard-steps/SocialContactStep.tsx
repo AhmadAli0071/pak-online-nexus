@@ -3,7 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Facebook, Instagram, MessageCircle, Globe } from 'lucide-react';
-import { ShopData } from '../ShopWizard';
+import { ShopData } from '@/types/shop';
 
 interface SocialContactStepProps {
   data: ShopData;

@@ -3,7 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
-import { ShopData } from '../ShopWizard';
+import { ShopData } from '@/types/shop';
 
 interface ShopMediaStepProps {
   data: ShopData;

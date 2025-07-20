@@ -15,7 +15,7 @@ import {
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
-import { ShopData } from '../ShopWizard';
+import { ShopData } from '@/types/shop';
 
 interface ReviewSubmitStepProps {
   data: ShopData;

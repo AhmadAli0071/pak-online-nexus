@@ -4,12 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { CheckCircle2, Circle, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
-
-
-
 import { cn } from '@/lib/utils';
-
+import { ShopData } from '@/types/shop';
 
 // Step Components
 import ShopInformationStep from '@/components/wizard-steps/ShopInformationStep';
@@ -19,44 +15,6 @@ import SocialContactStep from '@/components/wizard-steps/SocialContactStep';
 import ProductListingStep from '@/components/wizard-steps/ProductListingStep';
 import ReviewSubmitStep from '@/components/wizard-steps/ReviewSubmitStep';
 
-
-export interface ShopData {
-  // Step 1: Shop Information
-  shopName: string;
-  city: string;
-  shopType: 'Product Seller' | 'Service Provider' | '';
-  shopDescription: string;
-  
-  // Step 2: Business Categories
-  categories: string[];
-  
-  // Step 3: Shop Media
-  shopLogo: File | null;
-  shopBanner: File | null;
-  logoPreview: string;
-  bannerPreview: string;
-  
-  // Step 4: Social & Contact
-  facebookUrl: string;
-  instagramHandle: string;
-  whatsappNumber: string;
-  websiteUrl: string;
-  
-  // Step 5: Products
-  products: Array<{
-    id: string;
-    name: string;
-    image: File | null;
-    imagePreview: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    category: string;
-  }>;
-  
-  // Step 6: Terms
-  acceptTerms: boolean;
-}
 const STEPS = [
   { id: 1, title: 'Shop Information', description: 'Basic shop details' },
   { id: 2, title: 'Business Categories', description: 'Select your categories' },
