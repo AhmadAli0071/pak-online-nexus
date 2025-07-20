@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import { CheckCircle2, Circle, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { ShopData } from '@/types/shop';
+import Navbar from '@/components/Navbar';
 
 // Step Components
 import ShopInformationStep from '@/components/wizard-steps/ShopInformationStep';
@@ -16,16 +18,17 @@ import ProductListingStep from '@/components/wizard-steps/ProductListingStep';
 import ReviewSubmitStep from '@/components/wizard-steps/ReviewSubmitStep';
 
 const STEPS = [
-  { id: 1, title: 'Shop Information', description: 'Basic shop details' },
-  { id: 2, title: 'Business Categories', description: 'Select your categories' },
-  { id: 3, title: 'Shop Media', description: 'Upload logo & banner' },
-  { id: 4, title: 'Social & Contact', description: 'Connect your socials' },
-  { id: 5, title: 'Product Listing', description: 'Add your products' },
-  { id: 6, title: 'Review & Submit', description: 'Final review' },
+  'Shop Information',
+  'Business Categories',
+  'Shop Media',
+  'Social & Contact',
+  'Product Listing',
+  'Review & Submit'
 ];
 
 const ShopWizard: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(0);
   const [shopData, setShopData] = useState<ShopData>({
     shopName: '',
     city: '',
@@ -52,17 +55,17 @@ const ShopWizard: React.FC = () => {
 
   const validateStep = (step: number): boolean => {
     switch (step) {
-      case 1:
+      case 0:
         return !!(shopData.shopName && shopData.city && shopData.shopType && shopData.shopDescription);
-      case 2:
+      case 1:
         return shopData.categories.length > 0;
-      case 3:
+      case 2:
         return !!(shopData.shopLogo && shopData.shopBanner);
-      case 4:
+      case 3:
         return !!(shopData.whatsappNumber);
-      case 5:
+      case 4:
         return shopData.products.length > 0;
-      case 6:
+      case 5:
         return shopData.acceptTerms;
       default:
         return true;
@@ -79,19 +82,19 @@ const ShopWizard: React.FC = () => {
       return;
     }
 
-    if (currentStep < 6) {
+    if (currentStep < STEPS.length - 1) {
       setCurrentStep(prev => prev + 1);
     }
   };
 
   const handleBack = () => {
-    if (currentStep > 1) {
+    if (currentStep > 0) {
       setCurrentStep(prev => prev - 1);
     }
   };
 
   const handleSubmit = () => {
-    if (!validateStep(6)) {
+    if (!validateStep(5)) {
       toast({
         title: "Validation Error",
         description: "Please accept the terms and conditions.",
@@ -110,149 +113,130 @@ const ShopWizard: React.FC = () => {
 
   const renderStepContent = () => {
     switch (currentStep) {
-      case 1:
+      case 0:
         return <ShopInformationStep data={shopData} updateData={updateShopData} />;
-      case 2:
+      case 1:
         return <BusinessCategoriesStep data={shopData} updateData={updateShopData} />;
-      case 3:
+      case 2:
         return <ShopMediaStep data={shopData} updateData={updateShopData} />;
-      case 4:
+      case 3:
         return <SocialContactStep data={shopData} updateData={updateShopData} />;
-      case 5:
+      case 4:
         return <ProductListingStep data={shopData} updateData={updateShopData} />;
-      case 6:
+      case 5:
         return <ReviewSubmitStep data={shopData} updateData={updateShopData} />;
       default:
         return null;
     }
   };
 
-
-  const progressPercentage = (currentStep / STEPS.length) * 100;
-
   return (
-    <div className="min-h-screen bg-background py-8">
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-marketplace-accent bg-clip-text text-transparent mb-2">
-            Create Your Shop
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Set up your digital marketplace presence in just a few steps
-          </p>
-        </div>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      
+      <div className="pt-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header */}
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <Button
+              variant="ghost"
+              onClick={() => navigate('/store')}
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">Create Your Shop</h1>
+              <p className="text-muted-foreground">Set up your digital marketplace presence</p>
+            </div>
+          </motion.div>
 
-        {/* Progress Bar */}
-        <div className="mb-8">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-sm font-medium text-muted-foreground">
-              Step {currentStep} of {STEPS.length}
-            </span>
-            <span className="text-sm font-medium text-muted-foreground">
-              {Math.round(progressPercentage)}% Complete
-            </span>
-          </div>
-          <Progress value={progressPercentage} className="h-2" />
-        </div>
-
-        {/* Step Indicators */}
-        <div className="flex justify-between mb-8 overflow-x-auto">
-          {STEPS.map((step, index) => {
-            const isCompleted = currentStep > step.id;
-            const isCurrent = currentStep === step.id;
-            
-            return (
-              <div
-                key={step.id}
-                className={`flex flex-col items-center min-w-0 flex-1 ${
-                  index < STEPS.length - 1 ? 'relative' : ''
-                }`}
-              >
-                {/* Connector Line */}
-                {index < STEPS.length - 1 && (
-                  <div
-                    className={`absolute top-6 left-1/2 w-full h-0.5 -translate-y-1/2 transition-colors duration-300 ${
-                      isCompleted ? 'bg-step-completed' : 'bg-muted'
-                    }`}
-                    style={{ left: '50%', right: '-50%' }}
-                  />
-                )}
-                
-                {/* Step Circle */}
-                <div
-                  className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 mb-2 ${
-                    isCompleted
-                      ? 'bg-step-completed border-step-completed text-white'
-                      : isCurrent
-                      ? 'bg-step-active border-step-active text-white'
-                      : 'bg-background border-step-pending text-step-pending'
-                  }`}
-                >
-                  {isCompleted ? (
-                    <CheckCircle2 className="w-6 h-6" />
-                  ) : (
-                    <Circle className="w-6 h-6" />
+          {/* Progress Steps */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="mb-8"
+          >
+            <div className="flex items-center justify-between">
+              {STEPS.map((step, index) => (
+                <div key={index} className="flex items-center flex-1">
+                  <div className={`
+                    w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
+                    ${index <= currentStep 
+                      ? 'bg-primary text-white' 
+                      : 'bg-muted text-muted-foreground'
+                    }
+                  `}>
+                    {index + 1}
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <p className={`text-sm font-medium ${
+                      index <= currentStep ? 'text-foreground' : 'text-muted-foreground'
+                    }`}>
+                      {step}
+                    </p>
+                  </div>
+                  {index < STEPS.length - 1 && (
+                    <div className={`h-0.5 flex-1 mx-4 ${
+                      index < currentStep ? 'bg-primary' : 'bg-muted'
+                    }`} />
                   )}
                 </div>
-                
-                {/* Step Info */}
-                <div className="text-center">
-                  <h3 className={`text-sm font-medium transition-colors duration-300 ${
-                    isCurrent ? 'text-foreground' : 'text-muted-foreground'
-                  }`}>
-                    {step.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground hidden sm:block mt-1">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Step Content */}
-        <Card className="mb-8 shadow-lg">
-          <CardContent className="p-8">
-            <div className="animate-fade-in">
-              <h2 className="text-2xl font-semibold mb-6 text-center">
-                {STEPS[currentStep - 1].title}
-              </h2>
-              {renderStepContent()}
+              ))}
             </div>
-          </CardContent>
-        </Card>
+          </motion.div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between">
-          <Button
-            variant="outline"
-            onClick={handleBack}
-            disabled={currentStep === 1}
-            className="flex items-center gap-2"
+          {/* Form Content */}
+          <motion.div
+            key={currentStep}
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back
-          </Button>
+            <Card>
+              <CardHeader>
+                <CardTitle>{STEPS[currentStep]}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                {renderStepContent()}
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          {currentStep < 6 ? (
+          {/* Navigation Buttons */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="flex justify-between mt-8"
+          >
             <Button
-              onClick={handleNext}
-              className="flex items-center gap-2 bg-gradient-to-r from-primary to-marketplace-accent hover:opacity-90"
+              variant="outline"
+              onClick={handleBack}
+              disabled={currentStep === 0}
             >
-              Next
-              <ArrowRight className="w-4 h-4" />
+              Previous
             </Button>
-          ) : (
-            <Button
-              onClick={handleSubmit}
-              className="flex items-center gap-2 bg-gradient-to-r from-marketplace-success to-primary hover:opacity-90"
-            >
-              Create Shop
-              <CheckCircle2 className="w-4 h-4" />
-            </Button>
-          )}
+            
+            {currentStep === STEPS.length - 1 ? (
+              <Button 
+                onClick={handleSubmit}
+                className="bg-primary hover:bg-primary/90"
+              >
+                Create Shop
+              </Button>
+            ) : (
+              <Button onClick={handleNext}>
+                Next
+              </Button>
+            )}
+          </motion.div>
         </div>
       </div>
     </div>
