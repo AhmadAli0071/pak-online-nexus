@@ -166,7 +166,10 @@ export default function Feed() {
                         variant={item.active ? "default" : "ghost"}
                         className="w-full justify-start gap-3 relative"
                         onClick={() => {
-                          if (item.label === 'My Profile') navigate('/feed/profile/me')
+                          if (item.label === 'Home') navigate('/feed')
+                          if (item.label === 'Friends') navigate('/feed/friends')
+                          if (item.label === 'Notifications') navigate('/feed/notifications')
+                          if (item.label === 'Profile') navigate('/feed/profile')
                           if (item.label === 'Create Post') navigate('/feed/create')
                         }}
                       >

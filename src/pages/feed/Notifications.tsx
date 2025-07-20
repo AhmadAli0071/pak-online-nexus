@@ -5,6 +5,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import Navbar from "@/components/Navbar";
 
 const Notifications = () => {
   const [filter, setFilter] = useState("all");
@@ -90,7 +91,9 @@ const Notifications = () => {
   });
 
   return (
-    <div className="max-w-2xl mx-auto p-4 animate-fade-in">
+    <>
+      <Navbar />
+      <div className="max-w-2xl mx-auto p-4 animate-fade-in">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold mb-4">Notifications</h1>
@@ -191,6 +194,7 @@ const Notifications = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

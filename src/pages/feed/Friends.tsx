@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import Navbar from "@/components/Navbar";
 
 const Friends = () => {
   const [activeTab, setActiveTab] = useState("friends");
@@ -124,7 +125,9 @@ const Friends = () => {
   );
 
   return (
-    <div className="max-w-2xl mx-auto p-4 animate-fade-in">
+    <>
+      <Navbar />
+      <div className="max-w-2xl mx-auto p-4 animate-fade-in">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold mb-4">Friends</h1>
@@ -251,6 +254,7 @@ const Friends = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
