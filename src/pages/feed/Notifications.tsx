@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Heart, MessageCircle, UserPlus, Camera, Clock } from "lucide-react";
+import { Heart, MessageCircle, UserPlus, Camera, Clock, ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 
 const Notifications = () => {
   const [filter, setFilter] = useState("all");
+  const navigate = useNavigate();
   
   const notifications = [
     {
@@ -94,9 +96,20 @@ const Notifications = () => {
     <>
       <Navbar />
       <div className="max-w-2xl mx-auto p-4 animate-fade-in">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-4">Notifications</h1>
+        {/* Back Button */}
+        <div className="mb-6">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/feed")}
+            className="mb-4 -ml-2"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Feed
+          </Button>
+          
+          {/* Header */}
+          <h1 className="text-2xl font-bold mb-4">Notifications</h1>
         
         {/* Filter Tabs */}
         <div className="flex gap-2 overflow-x-auto pb-2">

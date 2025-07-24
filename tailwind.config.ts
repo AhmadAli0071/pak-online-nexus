@@ -55,6 +55,7 @@ export default {
 				},
 				'text-blue-dark': 'hsl(var(--text-blue-dark))',
 				'text-blue-gray': 'hsl(var(--text-blue-gray))',
+				'blue-light': 'hsl(var(--blue-light))',
 				'marketplace-primary': 'hsl(var(--marketplace-primary))',
 				'marketplace-accent': 'hsl(var(--marketplace-accent))',
 				'marketplace-success': 'hsl(var(--marketplace-success))',
@@ -98,7 +99,12 @@ export default {
 			},
 			boxShadow: {
 				'card': 'var(--shadow-card)',
-				'button': 'var(--shadow-button)'
+				'button': 'var(--shadow-button)',
+				'soft': 'var(--shadow-soft)'
+			},
+			backgroundImage: {
+				'gradient-social': 'var(--gradient-social)',
+				'gradient-subtle': 'var(--gradient-subtle)'
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',

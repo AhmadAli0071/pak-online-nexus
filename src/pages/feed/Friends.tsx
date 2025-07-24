@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { Search, UserPlus, UserMinus, MessageCircle, MoreHorizontal } from "lucide-react";
+import { Search, UserPlus, UserMinus, MessageCircle, MoreHorizontal, ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 
 const Friends = () => {
   const [activeTab, setActiveTab] = useState("friends");
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
   
   const friends = [
     {
@@ -128,9 +130,20 @@ const Friends = () => {
     <>
       <Navbar />
       <div className="max-w-2xl mx-auto p-4 animate-fade-in">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-4">Friends</h1>
+        {/* Back Button */}
+        <div className="mb-6">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/feed")}
+            className="mb-4 -ml-2"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Feed
+          </Button>
+          
+          {/* Header */}
+          <h1 className="text-2xl font-bold mb-4">Friends</h1>
         
         {/* Search */}
         <div className="relative mb-4">
