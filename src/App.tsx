@@ -39,6 +39,14 @@ import UserDashboard from "./pages/marketplace/UserDashboard";
 // Store Module Pages
 import ShopDetail from "./pages/store/ShopDetail";
 
+// Hospital Module Pages
+import Hospital from "./pages/Hospital";
+import CreateHospital from "./pages/hospital/CreateHospital";
+import HospitalDetail from "./pages/hospital/HospitalDetail";
+import DoctorDashboard from "./pages/hospital/DoctorDashboard";
+import PatientDashboard from "./pages/hospital/PatientDashboard";
+import BookAppointment from "./pages/hospital/BookAppointment";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -75,6 +83,13 @@ const App = () => (
           <Route path="/marketplace/dashboard" element={<UserDashboard />} />
           
           <Route path="/store/shop/:shopId" element={<ShopDetail />} />
+          
+          <Route path="/hospital" element={<Hospital />} />
+          <Route path="/hospital/create" element={<CreateHospital />} />
+          <Route path="/hospital/:hospitalId" element={<HospitalDetail />} />
+          <Route path="/hospital/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route path="/hospital/patient-dashboard" element={<PatientDashboard />} />
+          <Route path="/hospital/:hospitalId/book-appointment" element={<BookAppointment />} />
 
           {/* ✅ New sliding auth route */}
           <Route path="/auth" element={<AuthSlider />} />
